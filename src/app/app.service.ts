@@ -166,6 +166,11 @@ export class AppService implements OnDestroy {
     if (!metas) {
       throw new Error(`You have to send a meta tag object`);
     }
+    // -->Set: title
+    this.metaService.updateTag({
+      name: "title",
+      content: metas.title || MetasInterface.DefaultMetas.title,
+    });
     // -->Set: description
     this.metaService.updateTag({
       name: "description",
@@ -198,7 +203,7 @@ export class AppService implements OnDestroy {
    */
   public setTitle(title?: string): void {
     // -->Get: store name
-    let finalTitle = appInfo$?.getValue()?.shopInfo?.storefrontSettings?.data?.storeName || MetasInterface.DefaultMetas.title;
+    let finalTitle = appInfo$?.getValue()?.shopInfo?.companyInformation?.data?.storeName || MetasInterface.DefaultMetas.title;
     if (title) {
       finalTitle += ` - ${title}`;
     }

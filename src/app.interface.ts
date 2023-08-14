@@ -1,4 +1,21 @@
+import { Product } from "./app/interfaces/product";
+
 export namespace AppInterface {
+  /**
+   * Window details
+   */
+  export interface WindowDetails {
+    innerScreen: {
+      width: number,
+      height: number
+    },
+    screen: {
+      width: number,
+      height: number
+    },
+    devicePixelRatio: number
+    isApple: boolean
+  }
   /**
    * Interface: holding all the app info
    */
@@ -15,7 +32,9 @@ export namespace AppInterface {
       storefrontDisplay: StorefrontDisplay;
       about: About;
       termsAndConditions: TermsAndConditions;
-      featuredItems: any;
+      navigationAndFooter: NavigationAndFooter;
+      companyInformation: CompanyInformation;
+      featuredItems: FeaturedItems;
     };
   }
 
@@ -80,13 +99,8 @@ export namespace AppInterface {
   export interface StorefrontSettings {
     docId: string;
     data: {
-      online: boolean;
-      downForMaintenanceMessage: string;
-      storeName: string;
-      location: string;
-      supportEmail: string;
-      phoneNumber: string;
-      workingHours: string;
+      online?: boolean
+      downForMaintenanceMessage?: string
     };
   }
 
@@ -126,6 +140,101 @@ export namespace AppInterface {
     };
   }
 
+  /**
+   * Interface for Navigation and Footer
+   */
+  export interface NavigationAndFooter {
+    docId: string;
+    data: {
+      /** @default primary */
+      bannerColor?: string
+      bannerText?: string
+      /** @default hidden */
+      bannerVisibility?: "hidden" | "show" | "show-logged-only"
+      featuredHeaderCategories?: {
+        categoryId: string
+      }[]
+      /** @default */
+      displaySocialIcons?: boolean
+      socialMediaIcons?: {
+        socialMediaType: string
+        url: string
+      }[]
+      footerContactUs: string
+      footerOurGuarantee?: string
+    };
+  }
+
+  /**
+   * Interface for Featured items
+   */
+  export interface FeaturedItems {
+    docId: string;
+    data: {
+      heroTitle: string
+      heroImageUrl: string
+      heroDescription: string
+      primaryFeaturedCategories?: FeaturedCategory[]
+      mostPopularProducts?: Product[]
+      productHits?: Product[]
+      bestSellingCategories?: { docId: string, totalProducts: number }[]
+      seasonalProducts?: Product[]
+      /** @default */
+      showCategoryExplainers: boolean
+      categoryExplainers?: CategoryExplainer[]
+    };
+  }
+
+  /**
+   * Interface for Company Information
+   */
+  export interface CompanyInformation {
+    docId: string,
+    data: {
+      storeName: string
+      location: string
+      supportEmail?: string
+      phoneNumber?: string
+      workingHours?: string
+      /** @default */
+      showKeyAdvantages: boolean
+      keyAdvantagesTitle?: string
+      keyAdvantagesDescription?: string
+      keyAdvantages?: {
+        title: string
+        description: string
+        /** @default phone */
+        icon: string
+      }[]
+      /** @default */
+      showCallToAction: boolean
+      callToActionTitle?: string
+      callToActionDescription?: string
+      callToActionOptions?: {
+        title: string
+        description: string
+        /** @default phone */
+        icon: string
+        button: string
+      }[]
+    }
+  }
+
+  /**
+   * Featured category
+   */
+  interface FeaturedCategory {
+    categoryId?: string
+  }
+
+  /**
+   * Category Explainer
+   */
+  interface CategoryExplainer {
+    categoryId: string
+    buttonCopy: string
+  }
+
 
   /**
    * Category interface
@@ -133,8 +242,14 @@ export namespace AppInterface {
   export interface Category {
     docId: string;
     data: {
-      name: string;
-      parentId: string;
+      name: string
+      parentId?: string
+      /** A numeric id that represents the category Id from other data sources */
+      categoryId?: string
+      metaTitle?: string
+      metaDescription?: string
+      description?: string
+      imageUrl?: string
     };
     /**
      * This: is optional and set from FE for filtering and other stuff we need
@@ -143,6 +258,9 @@ export namespace AppInterface {
     children?: this[];
   }
 
+  /**
+   * Vendor
+   */
   export interface Vendor {
     docId: string;
     data: {

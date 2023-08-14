@@ -14,22 +14,22 @@ export const environment = {
         },
     },
     API: {
-        server: {
-            $id: 'server',
+      server: {
+        $id: 'server',
             protocol: 'http',
             port: 3010,
             url: 'localhost',
-            prefix: 'api/v2/',
+        prefix: 'api/v2/',
             ssl: false
-        },
-        naoToken: 'naoproductionwBnqYEc2CfI68lN6JBEqSBEzi',
-        webSocket: {
+      },
+      naoToken: 'naoproductionwBnqYEc2CfI68lN6JBEqSBEzi',
+      webSocket: {
             enabled: false,
-        },
-        basicAuth: {
-            user: 'gabriel',
+      },
+      basicAuth: {
+        user: 'gabriel',
             password: 'gabriel',
-        }
+      }
     },
     naoUsers: {
         ws: {

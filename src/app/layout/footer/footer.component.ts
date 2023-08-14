@@ -13,14 +13,6 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   public infoSupport = null;
 
-  // Newsletter social links
-  // public socialLinks = [
-  //     // { type: 'facebook',  url: theme.author.profile_url, icon: 'fab fa-facebook-f' },
-  //     // { type: 'twitter',   url: theme.author.profile_url, icon: 'fab fa-twitter' },
-  //     // { type: 'youtube',   url: theme.author.profile_url, icon: 'fab fa-youtube' },
-  //     // { type: 'instagram', url: theme.author.profile_url, icon: 'fab fa-instagram' },
-  //     // { type: 'rss',       url: theme.author.profile_url, icon: 'fas fa-rss' },
-  // ];
 
   constructor(public appService: AppService) { }
 
@@ -29,10 +21,12 @@ export class FooterComponent implements OnInit, OnDestroy {
       appInfo$.subscribe(value => {
         // -->Set: info
         this.infoSupport = {
-          supportPhoneNumber: value?.shopInfo?.storefrontSettings?.data?.phoneNumber || '',
-          supportEmailAddress: value?.shopInfo?.storefrontSettings?.data?.supportEmail || '',
-          location: value?.shopInfo?.storefrontSettings?.data?.location || '',
-          workingHours: value?.shopInfo?.storefrontSettings?.data?.workingHours || '',
+          supportPhoneNumber: value?.shopInfo?.companyInformation?.data?.phoneNumber || '',
+          supportEmailAddress: value?.shopInfo?.companyInformation?.data?.supportEmail || '',
+          location: value?.shopInfo?.companyInformation?.data?.location || '',
+          workingHours: value?.shopInfo?.companyInformation?.data?.workingHours || '',
+          contactUs: value?.shopInfo?.navigationAndFooter?.data?.footerContactUs || '',
+          ourGuarantee: value?.shopInfo?.navigationAndFooter?.data?.footerOurGuarantee || '',
         }
       })
     )
