@@ -91,6 +91,12 @@ export class ECommerceService<T = any> {
     }
 
 
+  /**
+   * Register: contact message
+   */
+  public registerContactMessage(data: T, naoQueryOptions = { docName: 'message', cfpPath: 'ecommerce/ecommerce' }): Observable<T> {
+    return this.naoHttp2ApiService.postJson<T>(`${this.apiRoot}/ecommerce/data/send-message`, { data: { data: { ...(data || {}) }, naoQueryOptions } });
+  }
 
 
 
@@ -99,7 +105,7 @@ export class ECommerceService<T = any> {
 
 
 
-    /**
+  /**
      * Get: multiple documents by Id
      */
     public productsGetBulk(docIds: string[], naoQueryOptions = NaoDocumentInterface.naoQueryOptionsDefault()): Observable<T> {
