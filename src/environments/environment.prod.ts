@@ -20,11 +20,11 @@ export const environment = {
       $id: 'server',
       protocol: 'https',
       port: 443,
-      url: 'dms1-business-logic-api-d2651930-dev.naologic.space',
+      url: 'dms1-business-logic-api-d7345264.naologic.space'
       prefix: 'api/v2/',
       ssl: true
     },
-    naoToken: 'naoproductionCFNjXpqmXseZAYvGPv1F7W22p',
+    naoToken: 'naoproduction2cVyI-8zrxyJjOJVB1b-Zu6eH',
     webSocket: {
       enabled: false
     },
